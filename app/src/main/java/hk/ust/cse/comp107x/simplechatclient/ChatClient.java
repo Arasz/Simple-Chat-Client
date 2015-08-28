@@ -2,6 +2,7 @@ package hk.ust.cse.comp107x.simplechatclient;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +48,8 @@ public class ChatClient extends Activity implements View.OnClickListener {
 
         // Set the ListView's adapter to be the adapter that we just constructed
         messageList.setAdapter(mAdapter);
+
+        Log.i(this.getClass().toString()," in onCreate");
 
     }
 
