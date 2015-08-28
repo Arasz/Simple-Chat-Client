@@ -35,15 +35,30 @@ public class MyArrayAdapter extends ArrayAdapter<Message> {
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        // The messageView is constructed by inflating the message.xml layout file
-        messageView = inflater.inflate(R.layout.message, parent, false);
+        if(messages.get(position).fromMe())
+        {
+            // The messageView is constructed by inflating the message.xml layout file
+            messageView = inflater.inflate(R.layout.mymessage, parent, false);
 
-        // Get the reference to the two TextViews in the message layout and set them
-        // to the time and message string respectively
-        TextView timeView = (TextView) messageView.findViewById(R.id.timeTextView);
-        timeView.setText(messages.get(position).getTime());
-        TextView insideMessageView = (TextView) messageView.findViewById(R.id.messageTextView);
-        insideMessageView.setText(messages.get(position).getMessage());
+            // Get the reference to the two TextViews in the message layout and set them
+            // to the time and message string respectively
+            TextView timeView = (TextView) messageView.findViewById(R.id.mytimeTextView);
+            timeView.setText(messages.get(position).getTime());
+            TextView insideMessageView = (TextView) messageView.findViewById(R.id.mymessageTextView);
+            insideMessageView.setText(messages.get(position).getMessage());
+        }
+        else
+        {
+            // The messageView is constructed by inflating the message.xml layout file
+            messageView = inflater.inflate(R.layout.message, parent, false);
+
+            // Get the reference to the two TextViews in the message layout and set them
+            // to the time and message string respectively
+            TextView timeView = (TextView) messageView.findViewById(R.id.timeTextView);
+            timeView.setText(messages.get(position).getTime());
+            TextView insideMessageView = (TextView) messageView.findViewById(R.id.messageTextView);
+            insideMessageView.setText(messages.get(position).getMessage());
+        }
 
         return messageView;
     }

@@ -23,6 +23,8 @@ public class ChatClient extends Activity implements View.OnClickListener {
     MyArrayAdapter mAdapter = null;
     ArrayList<Message> messages = null;
 
+    private int incomingIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,7 @@ public class ChatClient extends Activity implements View.OnClickListener {
                     // Notify the adapter that the data has changed due to the addition of
                     // a new message object. This triggers an update of the ListVIew
                     mAdapter.notifyDataSetChanged();
+                    sendMessage();
                     message = null;
                     messageText.setText("");
                 }
@@ -93,6 +96,22 @@ public class ChatClient extends Activity implements View.OnClickListener {
 
             default:
                 break;
+        }
+    }
+
+    public void sendMessage()
+    {
+        String[] incoming = {"Hey, How's it going?",
+                "Super! Let's do lunch tomorrow",
+                "How about Mexican?",
+                "Great, I found this new place around the corner",
+                "Ok, see you at 12 then!"};
+        if(incomingIndex < incoming.length)
+        {
+            Message message = new Message("John", incoming[incomingIndex], false, new Date());
+            messages.add(message);
+            incomingIndex++;
+            mAdapter.notifyDataSetChanged();
         }
     }
 }
