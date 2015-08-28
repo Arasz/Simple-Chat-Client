@@ -58,7 +58,7 @@ public class Message {
 
     public String getTime() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat sdf = new SimpleDateFormat("kk:mm");
 
         return sdf.format(date);
 
