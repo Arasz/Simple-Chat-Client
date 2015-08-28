@@ -33,7 +33,19 @@ public class ChatClient extends Activity implements View.OnClickListener {
 
         messageText = (EditText) findViewById(R.id.messageText);
 
-        // TODO
+        messageList = (ListView) findViewById(R.id.messageList);
+
+        messages = new ArrayList<Message>();
+
+        // Create a new custom ArrayAdapter. THis custom Adapter is
+        // implemented by us, and illustrates how an ArrayAdapter is
+        // constructed given the data ( from Message objects )
+
+        mAdapter = new MyArrayAdapter(this, messages);
+
+        // Set the ListView's adapter to be the adapter that we just constructed
+        messageList.setAdapter(mAdapter);
+
     }
 
     @Override
@@ -68,9 +80,13 @@ public class ChatClient extends Activity implements View.OnClickListener {
 
                 // If the message is not empty string
                 if (!messString.equals("")) {
-
-                    // TODO
-
+                    Message message = new Message("", messString, true, new Date());
+                    messages.add(message);
+                    // Notify the adapter that the data has changed due to the addition of
+                    // a new message object. This triggers an update of the ListVIew
+                    mAdapter.notifyDataSetChanged();
+                    message = null;
+                    messageText.setText("");
                 }
 
                 break;
